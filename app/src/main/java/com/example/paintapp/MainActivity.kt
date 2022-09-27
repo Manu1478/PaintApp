@@ -1,11 +1,15 @@
 package com.example.paintapp
 
+import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.Toast
+import com.example.paintapp.PaintView.Companion.colorList
+import com.example.paintapp.PaintView.Companion.currentBrush
+import com.example.paintapp.PaintView.Companion.pathList
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -23,17 +27,27 @@ class MainActivity : AppCompatActivity() {
         val rubber=findViewById<ImageButton>(R.id.whiteColor)
 
         redbtn.setOnClickListener {
-        Toast.makeText(this, "Clicked r",Toast.LENGTH_SHORT).show()
+            paintbrush.color=Color.RED
+            currentColor(paintbrush.color)
         }
         bluebtn.setOnClickListener {
-            Toast.makeText(this, "Clicked blue",Toast.LENGTH_SHORT).show()
+            paintbrush.color=Color.BLUE
+            currentColor(paintbrush.color)
         }
         blackbtn.setOnClickListener {
-            Toast.makeText(this, "Clicked black",Toast.LENGTH_SHORT).show()
+            paintbrush.color=Color.BLACK
+            currentColor(paintbrush.color)
         }
         rubber.setOnClickListener {
-            Toast.makeText(this, "Clicked white",Toast.LENGTH_SHORT).show()
+            pathList.clear()
+            colorList.clear()
+            path.reset()
         }
 
+        }
+    private fun currentColor(color:Int)
+    {
+        currentBrush=color
+        path= Path()
     }
 }
